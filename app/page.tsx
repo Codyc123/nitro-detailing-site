@@ -1,65 +1,121 @@
-import Image from "next/image";
+import Link from "next/link";
+import CTA from "@/components/CTA";
+import { site } from "@/lib/site";
 
-export default function Home() {
+const services = [
+  {
+    title: "Ceramic Coating",
+    href: "/ceramic-coating",
+    blurb: "Long-term hydrophobic protection with a deep, glass-like gloss.",
+  },
+  
+  {
+    title: "Window Tint",
+    href: "/tint",
+    blurb: "Heat and UV rejection with a clean, factory-plus look.",
+  },
+  {
+    title: "Interior Detailing",
+    href: "/interior-detail",
+    blurb: "Steam, extraction, and surface renewal for a fresh, sterile cabin.",
+  },
+  {
+    title: "Exterior Detailing",
+    href: "/exterior-detail",
+    blurb: "Safe wash, decon, polish, and protection for a flawless finish.",
+  },
+];
+
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      {/* HERO */}
+      <section className="border-b border-white/10 bg-black">
+        <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
+          <p className="text-xs uppercase tracking-[0.2em] text-white/60">
+            {site.city}
           </p>
+
+          <h1 className="mt-3 text-4xl md:text-6xl font-semibold tracking-tight">
+            {site.tagline}
+          </h1>
+
+          <p className="mt-5 max-w-2xl text-white/75 md:text-lg">
+            {site.description}
+          </p>
+
+          {/* CTA BUTTONS (WORKING) */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/contact"
+              className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black hover:opacity-90 transition"
+            >
+              Get a Free Quote
+            </Link>
+
+            <Link
+              href="/ceramic-coating"
+              className="rounded-2xl border border-white px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-black transition"
+            >
+              Explore Services
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* SERVICES GRID */}
+      <section className="mx-auto max-w-6xl px-4 py-14 md:py-18">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+          Services
+        </h2>
+
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((s) => (
+            <Link
+              href={s.href}
+              key={s.title}
+              className="group rounded-3xl border border-white/10 bg-black p-6 hover:border-white/30 transition"
+            >
+              <h3 className="text-lg font-semibold">{s.title}</h3>
+              <p className="mt-2 text-sm text-white/70 leading-relaxed">
+                {s.blurb}
+              </p>
+              <p className="mt-4 text-sm text-white group-hover:text-white/80">
+                Learn more →
+              </p>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="border-y border-white/10 bg-black">
+        <div className="mx-auto max-w-6xl px-4 py-14 md:py-18 grid gap-6 md:grid-cols-3">
+          {[
+            [
+              "Studio-grade results",
+              "Paint correction and finishing under high-CRI lighting.",
+            ],
+            [
+              "Premium materials",
+              "Top-tier coatings, films, and tint with proven longevity.",
+            ],
+            [
+              "Obsessive prep",
+              "90% of perfection happens before protection touches paint.",
+            ],
+          ].map(([t, d]) => (
+            <div key={t} className="rounded-3xl border border-white/10 p-6">
+              <p className="text-lg font-semibold">{t}</p>
+              <p className="mt-2 text-sm text-white/70 leading-relaxed">{d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* BOTTOM CTA */}
+      <CTA />
+    </>
   );
 }
