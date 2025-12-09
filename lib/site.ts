@@ -7,5 +7,5 @@ export const site = {
   hours: "Mon–Sat: 9am–6pm",
   tagline: "Precision protection. Showroom finishes. Built to last.",
   description:
-    "Premium automotive detailing specializing in ceramic coatings, paint protection film (PPF), window tint, and full interior/exterior reconditioning.",
+    "Premium automotive detailing specializing in ceramic coatings, window tint, and full interior/exterior reconditioning.",
 };
